@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counter-Trainer | Home</title>
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+        }
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, rgb(14, 14, 14), rgb(12, 12, 12));
+            color: white;
+            display: flex;
+            overflow: hidden;
+        }
+        .sidebar {
+            width: 220px;
+            height: 100vh;
+            background: linear-gradient(to bottom, rgb(9, 9, 9), rgb(0, 0, 0));
+            padding-top: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .logo {
+            width: 75px;
+            height: 75px;
+            margin-bottom: 10px;
+        }
+        .search {
+            width: 90%;
+            padding: 10px;
+            background: #222;
+            border: 1px solid #5E7A93;
+            border-radius: 5px;
+            color: white;
+            margin-bottom: 10px;
+            outline: none;
+        }
+        .search:focus {
+            border-color: #88a1b9;
+        }
+        .nav-item {
+            width: 90%;
+            padding: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .nav-item:hover {
+            background: #222;
+        }
+        .icon {
+            width: 20px;
+            height: 20px;
+            background: gray;
+            border-radius: 3px;
+            box-shadow: 0px 8px 20px -10px #bbbbbb;
+        }
+        .upgrade {
+            color: #ffffff;
+            margin-top: auto;
+            margin-bottom: 10px;
+        }
+        .button {
+            
+            border: solid 1px #ffffff;
+            width: 90%;
+            padding: 10px;
+            margin-top: 10px;
+            background: #5E7A93;
+            border: #222;
+            border-radius: 5px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .button:hover {
+            background: #88a1b9;
+        }
+        .input-field {
+            width: 90%;
+            padding: 8px;
+            margin-top: 10px;
+            background: #222;
+            border: 1px solid #5E7A93;
+            border-radius: 5px;
+            color: white;
+            outline: none;
+        }
+        .input-field:focus {
+            border-color: #88a1b9;
+        }
+        .checkbox {
+            margin-top: 10px;
+            accent-color: #5E7A93;
+        }
+        .slider {
+            width: 90%;
+            margin-top: 10px;
+            accent-color: #5E7A93;
+        }
+        .dropdown {
+            width: 90%;
+            padding: 8px;
+            background: #222;
+            border: 1px solid #5E7A93;
+            border-radius: 5px;
+            color: white;
+            margin-top: 10px;
+            outline: none;
+        }
+        .text-area {
+            width: 90%;
+            height: 80px;
+            background: #222;
+            border: 1px solid #5E7A93;
+            border-radius: 5px;
+            color: white;
+            padding: 8px;
+            margin-top: 10px;
+            outline: none;
+        }
+        .styled-line {
+            width: 90%;
+            border: none;
+            height: 2px;
+            background: #ffffff;
+            margin: 15px 0;
+            border-radius: 19px;
+        }
+        .styled-line2 {
+            width: 90%;
+            border: none;
+            height: 2px;
+            background: #ffffff2f;
+            margin: 15px 0;
+            border-radius: 19px;
+        }
+        .vertical-line {
+            width: 1.5px;
+            height: 30px;
+            background-color: #ffffff;
+            margin-right: 10px;
+            border-radius: 19px;
+        }
+        a {
+        text-decoration: none;
+        color: inherit;
+        }
+        a:focus, a:hover {
+            outline: none;
+        }
+        .sidebar.hidden {
+            display: none;
+        }
+        .sidebar-icon-rotated {
+            transform: rotate(180deg);
+        }
+        .notification {
+            display: flex;
+            flex-direction: column;
+            isolation: isolate;
+            position: relative;
+            width: 25rem;
+            height: 10rem;
+            background: #29292c;
+            border-radius: 1rem;
+            overflow: hidden;
+            font-size: 16px;
+            --gradient: linear-gradient(to bottom, #637789, #637789, #637789);
+            --color: #637789
+        }
+
+            .notification:before {
+            position: absolute;
+            content: "";
+            inset: 0.0625rem;
+            border-radius: 0.9375rem;
+            background: #18181b;
+            z-index: 2
+            }
+
+            .notification:after {
+            position: absolute;
+            content: "";
+            width: 0.25rem;
+            inset: 0.65rem auto 0.65rem 0.5rem;
+            border-radius: 0.125rem;
+            background: var(--gradient);
+            transition: transform 300ms ease;
+            z-index: 4;
+            }
+
+            .notification:hover:after {
+            transform: translateX(0.15rem)
+            }
+
+            .notititle {
+            color: var(--color);
+            padding: 0.65rem 0.25rem 0.4rem 1.25rem;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: transform 300ms ease;
+            z-index: 5;
+            }
+
+            .notification:hover .notititle {
+            transform: translateX(0.15rem)
+            }
+
+            .notibody {
+            color: #99999d;
+            padding: 0 1.25rem;
+            transition: transform 300ms ease;
+            z-index: 5;
+            }
+
+            .notification:hover .notibody {
+            transform: translateX(0.25rem)
+            }
+
+            .notiglow,
+            .notiborderglow {
+            position: absolute;
+            width: 20rem;
+            height: 20rem;
+            transform: translate(-50%, -50%);
+            background: radial-gradient(circle closest-side at center, white, transparent);
+            opacity: 0;
+            transition: opacity 300ms ease;
+            }
+
+            .notiglow {
+            z-index: 3;
+            }
+
+            .notiborderglow {
+            z-index: 1;
+            }
+
+            .notification:hover .notiglow {
+            opacity: 0.1
+            }
+
+            .notification:hover .notiborderglow {
+            opacity: 0.1
+            }
+
+            .note {
+            color: var(--color);
+            position: fixed;
+            top: 80%;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            font-size: 0.9rem;
+            width: 75%;
+            }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <img src="assets/images/CT.png" class="logo">
+        <hr class="styled-line">
+    
+        <a href="home.html" class="nav-item">
+            <img src="assets/images/home.png" width="35px" height="35px" alt="Home">
+            <span class="vertical-line"></span>
+            <div style="margin-left: -20px"></div>
+            Home
+        </a>
+        <div style="margin-top: -7.5px"></div>
+        <hr class="styled-line2">
+        <div style="margin-top: -7.5px"></div>
+        <a href="https://google.com/" class="nav-item">
+            <img src="assets/images/play.png" width="35px" height="35px" alt="Play">
+            <span class="vertical-line"></span>
+            <div style="margin-left: -20px"></div>
+            Matchmaking
+        </a>
+        <div style="margin-top: -7.5px"></div>
+        <hr class="styled-line2">
+        <div style="margin-top: -7.5px"></div>
+        <a href="https://google.com/" class="nav-item">
+            <img src="assets/images/profile.png" width="35px" height="35px" alt="Profile">
+            <span class="vertical-line"></span>
+            <div style="margin-left: -20px"></div>
+            Profile
+        </a>
+        <div style="margin-top: -7.5px"></div>
+        <hr class="styled-line2">
+        <div style="margin-top: -7.5px"></div>
+        <a href="https://google.com/" class="nav-item">
+            <img src="assets/images/leaderboard.png" width="35px" height="35px" alt="Leaderboard">
+            <span class="vertical-line"></span>
+            <div style="margin-left: -20px"></div>
+            Leaderboard
+        </a>
+
+        <a href="https://google.com/" class="nav-item upgrade">
+            <img src="assets/images/settings.png" width="35px" height="35px" alt="Settings">
+            <span class="vertical-line"></span>
+            <div style="margin-left: -20px"></div>
+            Settings
+        </a>
+        <div style="margin-bottom: 7.5px"></div>
+    </div>
+    <button id="toggleSidebarBtn" style="height: 30px; width: 30px; background: none; border: none; padding: 0; display: inline; margin-left: 7.5px;margin-top: 7.5px"">
+        <img src="assets/images/collapse.png" style="height: 30px; width: 30px;">
+    </button>
+    <div style="margin-left: 50px;margin-top: 50px">
+        <b><i><h1>Counter-Trainer</h1></i></b>
+        <hr style="width: 1500px" class="styled-line2">
+        <div class="notification">
+            <div class="notiglow"></div>
+            <div class="notiborderglow"></div>
+            
+            <div class="notititle">
+                <a href="profile.html"><img src="https://avatars.cloudflare.steamstatic.com/5b6279e50c1dca2775d24f9430ecf6fd5778696a_full.jpg" title="@Freezie" style="cursor:pointer;border-radius: 99px;border: 1px solid #5E7A93;" width="55px" height="55px"></a>
+                <a href="https://google.com/"><img src="assets/images/rating.common.png" style="margin-left: 1px" width="150px" height="55px"></a>
+                <a href="https://google.com/"><img src="https://raw.githubusercontent.com/SteamDatabase/GameTracking-CSGO/0e457516ba13817a45b6c2a1d262fe7d0599bcbc/csgo/pak01_dir/resource/flash/econ/status_icons/skillgroup_expired.png" title="Your skill group" style="cursor:pointer;margin-left: 3px" width="150px" height="55px"></a>
+                
+                <div style="margin-top: -16px"></div>
+                <br>
+                <b>@Freezie</b>
+            </div>      
+            
+            <div class="notibody">Your Elo: <u><b><a id="userElo" href="google.com">0</a></b></u></div>
+            <div style="margin-top: 5px"></div>
+            <div class="notibody">Competetive Rank: <u><b><a id="userRank" href="google.com">Expired</a></b></u></div>
+          </div>
+    </div>
+</body>
+</html>
+
+<script>
+    document.getElementById('toggleSidebarBtn').addEventListener('click', function() {
+        const sidebar = document.querySelector('.sidebar');
+        const sidebarIcon = document.querySelector('#toggleSidebarBtn img');
+        
+        sidebar.classList.toggle('hidden');
+        
+        // Toggle the rotation of the image
+        sidebarIcon.classList.toggle('sidebar-icon-rotated');
+    });
+</script>
+
+<script>
+async function fetchAndUpdate() {
+    try {
+        const url = `https://raw.githubusercontent.com/ConCatMatthew/counter-trainer-data/refs/heads/main/newPlayerData.json?t=${new Date().getTime()}`;
+        const response = await fetch(url, { cache: "no-store" });
+        const data = await response.json();
+
+        if (data) {
+            document.getElementById("userElo").innerText = data.userElo;
+            document.getElementById("userRank").innerText = data.userRank;
+
+            document.querySelector(".notititle b").innerText = `@${data.userName}`;
+            document.querySelector(".notititle a:nth-of-type(2) img").setAttribute("src", `assets/images/${data.userEloPicture}`);
+            document.querySelector(".notititle a:nth-of-type(3) img").setAttribute("src", data.userRankPicture);
+        }
+    } catch (error) {
+        console.error("Error fetching or updating data:", error);
+    }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    fetchAndUpdate();
+    setInterval(fetchAndUpdate, 10000); // Update every 10 seconds
+});
+</script>
