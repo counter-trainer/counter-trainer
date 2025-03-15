@@ -68,8 +68,19 @@
             transition: 0.3s;
             background:#181818;
         }
-        .nav-item:hover {
-            background: #222;
+
+        .nav-banner {
+            width: 98.5%;
+            padding: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-radius: 5px;
+            transition: 0.3s;
+            border: #ff0000;
+            border-style: solid;
+            border-width: 2px;
+            background:#181818;
         }
         .nav-item2:hover {
             background: #222;
@@ -327,7 +338,13 @@
     </div>
     <div style="margin-left: 220px;">
         <div style="margin-left: 50px;margin-top: 50px">
-            
+
+            <a class="nav-banner">
+                <img src="assets/images/warning.png" width="35px" height="35px" style="filter: hue-rotate(0deg) brightness(0) saturate(100%) invert(14%) sepia(99%) saturate(7464%) hue-rotate(1deg) brightness(98%) contrast(113%);">
+                <div style="margin-left: -10px"></div>
+                <b><font color="red">Your account has been banned for skin farming.</font></b>
+            </a>
+
             <b><i><h1>Welcome to Counter-Trainer!</h1></i></b>
             <hr style="width: 1500px" class="styled-line2">
             <div class="notification">
@@ -410,7 +427,7 @@
     
             if (data) {
                 document.getElementById("userElo").innerText = data.userElo || "N/A";;
-                document.getElementById("userRank").innerText = data.userRank || "N/A";;
+                document.getElementById("userRank").innerText = data.compRankText || "N/A";;
 
                 document.getElementById("leaderboardPlacement").innerText = data.leaderboardPlacement || "N/A";;
                 document.getElementById("leaderboardPlacementLocal").innerText = data.leaderboardPlacementLocal || "N/A";;
