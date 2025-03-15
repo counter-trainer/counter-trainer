@@ -372,7 +372,7 @@
             <h1>Rating</h1>
             <div>Your Elo: <u><b><a id="userElo">1</a></b></u></div>
             <div style="margin-top: 5px"></div>
-            <a><img src="assets/images/rating.common.png" style="margin-left: 1px" width="150px" height="55px"></a>
+            <a><img id="ratingImage" src="assets/images/rating.common.png" style="margin-left: 1px" width="150px" height="55px"></a>
             
             <div style="margin-top: 5px"></div>
             
@@ -427,6 +427,7 @@
     
             if (data) {
                 document.getElementById("userElo").innerText = data.userElo || "N/A";;
+                document.getElementById("ratingImage").setAttribute("src", `assets/images/${data.userEloPicture}`);
 
                 document.getElementById("leaderboardPlacement").innerText = data.leaderboardPlacement || "N/A";;
                 document.getElementById("leaderboardPlacementLocal").innerText = data.leaderboardPlacementLocal || "N/A";;
