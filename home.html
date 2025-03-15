@@ -336,8 +336,8 @@
                 
                 <div class="notititle">
                     <a href="profile.html"><img src="https://avatars.cloudflare.steamstatic.com/5b6279e50c1dca2775d24f9430ecf6fd5778696a_full.jpg" title="@Freezie" style="cursor:pointer;border-radius: 99px;border: 1px solid #5E7A93;" width="55px" height="55px"></a>
-                    <a><img src="assets/images/rating.common.png" title="Your premier rating" style="margin-left: 1px" width="150px" height="55px"></a>
-                    <a><img src="https://raw.githubusercontent.com/SteamDatabase/GameTracking-CSGO/0e457516ba13817a45b6c2a1d262fe7d0599bcbc/csgo/pak01_dir/resource/flash/econ/status_icons/skillgroup_expired.png" title="Your skill group" style="margin-left: 3px" width="150px" height="55px"></a>
+                    <a><img id="ratingImage" src="assets/images/rating.common.png" title="Your premier rating" style="margin-left: 1px" width="150px" height="55px"></a>
+                    <a><img id="rankImage" src="https://raw.githubusercontent.com/SteamDatabase/GameTracking-CSGO/0e457516ba13817a45b6c2a1d262fe7d0599bcbc/csgo/pak01_dir/resource/flash/econ/status_icons/skillgroup_expired.png" title="Your skill group" style="margin-left: 3px" width="150px" height="55px"></a>
                     <div style="margin-top: -16px"></div>
                     <br>
                     <b>@Freezie</b>
@@ -415,9 +415,11 @@
                 document.getElementById("leaderboardPlacement").innerText = data.leaderboardPlacement || "N/A";;
                 document.getElementById("leaderboardPlacementLocal").innerText = data.leaderboardPlacementLocal || "N/A";;
     
-                document.querySelector(".notititle b").innerText = `@${data.userName}`;
                 document.querySelector(".notititle a:nth-of-type(2) img").setAttribute("src", `assets/images/${data.userEloPicture}`);
                 document.querySelector(".notititle a:nth-of-type(3) img").setAttribute("src", data.userRankPicture);
+
+                document.getElementById("ratingImage").setAttribute("src", `assets/images/${data.userEloPicture}`);
+                document.getElementById("rankImage").setAttribute("src", data.compRank);
             }
         } catch (error) {
             console.error("Error fetching or updating data:", error);
