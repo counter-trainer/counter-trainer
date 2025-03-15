@@ -6,11 +6,11 @@
   "userRankPicture": "https://raw.githubusercontent.com/SteamDatabase/GameTracking-CSGO/0e457516ba13817a45b6c2a1d262fe7d0599bcbc/csgo/pak01_dir/resource/flash/econ/status_icons/skillgroup_expired.png",
   "leaderboardPlacement": "?",
   "leaderboardPlacementLocal": "?",
-  "compRank": "https://raw.githubusercontent.com/SteamDatabase/GameTracking-CSGO/0e457516ba13817a45b6c2a1d262fe7d0599bcbc/csgo/pak01_dir/resource/flash/econ/status_icons/skillgroup17.png",
-  "wingRank": "wingman_masterguardianelite.webp",
-  "deathRank": "https://raw.githubusercontent.com/SteamDatabase/GameTracking-CSGO/0e457516ba13817a45b6c2a1d262fe7d0599bcbc/csgo/pak01_dir/resource/flash/econ/status_icons/skillgroup12.png",
-  "compRankText": "test COMP",
-  "wingRankText": "test WING",
-  "deathRankText": "test DEATH",
+  "compRank": "https://raw.githubusercontent.com/SteamDatabase/GameTracking-CSGO/0e457516ba13817a45b6c2a1d262fe7d0599bcbc/csgo/pak01_dir/resource/flash/econ/status_icons/skillgroup_expired.png",
+  "wingRank": "wingman_unknown.webp",
+  "deathRank": "https://raw.githubusercontent.com/SteamDatabase/GameTracking-CSGO/0e457516ba13817a45b6c2a1d262fe7d0599bcbc/csgo/pak01_dir/resource/flash/econ/status_icons/skillgroup_none.png",
+  "compRankText": "Expired",
+  "wingRankText": "Unknown",
+  "deathRankText": "Unknown",
   "hasGammaPass": false
 }
