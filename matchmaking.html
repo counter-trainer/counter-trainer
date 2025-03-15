@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counter-Trainer | Matchmaking</title>
+    <style>
+        ::-webkit-scrollbar {
+            display: none;
+        }
+        body {
+            font-family: 'Open Sans', sans-serif;
+        }
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, rgb(14, 14, 14), rgb(14, 14, 14));
+            color: white;
+            display: flex;
+        }
+        .sidebar {
+            position: fixed;
+            width: 220px;
+            height: 100vh;
+            background: linear-gradient(to bottom, rgb(9, 9, 9), rgb(0, 0, 0));
+            padding-top: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .logo {
+            width: 75px;
+            height: 75px;
+            margin-bottom: 10px;
+        }
+        .search {
+            width: 90%;
+            padding: 10px;
+            background: #222;
+            border: 1px solid #5E7A93;
+            border-radius: 5px;
+            color: white;
+            margin-bottom: 10px;
+            outline: none;
+        }
+        .search:focus {
+            border-color: #88a1b9;
+        }
+        .nav-item {
+            width: 90%;
+            padding: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .nav-item2 {
+            width: 98.5%;
+            padding: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+            background:#181818;
+        }
+        .nav-item:hover {
+            background: #222;
+        }
+        .nav-item2:hover {
+            background: #222;
+        }
+        .icon {
+            width: 20px;
+            height: 20px;
+            background: gray;
+            border-radius: 3px;
+            box-shadow: 0px 8px 20px -10px #bbbbbb;
+        }
+        .upgrade {
+            color: #ffffff;
+            margin-top: auto;
+            margin-bottom: 10px;
+        }
+        .button {
+            border: solid 1px #ffffff;
+            width: 90%;
+            padding: 10px;
+            margin-top: 10px;
+            background: #5E7A93;
+            border: #222;
+            border-radius: 5px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .button:hover {
+            background: #88a1b9;
+        }
+        .input-field {
+            width: 90%;
+            padding: 8px;
+            margin-top: 10px;
+            background: #222;
+            border: 1px solid #5E7A93;
+            border-radius: 5px;
+            color: white;
+            outline: none;
+        }
+        .input-field:focus {
+            border-color: #88a1b9;
+        }
+        .checkbox {
+            margin-top: 10px;
+            accent-color: #5E7A93;
+        }
+        .slider {
+            width: 90%;
+            margin-top: 10px;
+            accent-color: #5E7A93;
+        }
+        .dropdown {
+            width: 90%;
+            padding: 8px;
+            background: #222;
+            border: 1px solid #5E7A93;
+            border-radius: 5px;
+            color: white;
+            margin-top: 10px;
+            outline: none;
+        }
+        .text-area {
+            width: 90%;
+            height: 80px;
+            background: #222;
+            border: 1px solid #5E7A93;
+            border-radius: 5px;
+            color: white;
+            padding: 8px;
+            margin-top: 10px;
+            outline: none;
+        }
+        .styled-line {
+            width: 90%;
+            border: none;
+            height: 2px;
+            background: #ffffff;
+            margin: 15px 0;
+            border-radius: 19px;
+        }
+        .styled-line2 {
+            width: 90%;
+            border: none;
+            height: 2px;
+            background: #ffffff2f;
+            margin: 15px 0;
+            border-radius: 19px;
+        }
+        .vertical-line {
+            width: 1.5px;
+            height: 30px;
+            background-color: #ffffff;
+            margin-right: 10px;
+            border-radius: 19px;
+        }
+        a {
+        text-decoration: none;
+        color: inherit;
+        }
+        a:focus, a:hover {
+            outline: none;
+        }
+        .notification {
+            display: flex;
+            flex-direction: column;
+            isolation: isolate;
+            position: relative;
+            width: 25rem;
+            height: 13.5rem;
+            background: #29292c;
+            border-radius: 1rem;
+            overflow: hidden;
+            font-size: 16px;
+            --gradient: linear-gradient(to bottom, #637789, #637789, #637789);
+            --color: #637789
+        }
+
+            .notification:before {
+            position: absolute;
+            content: "";
+            inset: 0.0625rem;
+            border-radius: 0.9375rem;
+            background: #18181b;
+            z-index: 2
+            }
+
+            .notification:after {
+            position: absolute;
+            content: "";
+            width: 0.25rem;
+            inset: 0.65rem auto 0.65rem 0.5rem;
+            border-radius: 0.125rem;
+            background: var(--gradient);
+            transition: transform 300ms ease;
+            z-index: 4;
+            }
+
+            .notification:hover:after {
+            transform: translateX(0.15rem)
+            }
+
+            .notititle {
+            color: var(--color);
+            padding: 0.65rem 0.25rem 0.4rem 1.25rem;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: transform 300ms ease;
+            z-index: 5;
+            }
+
+            .notification:hover .notititle {
+            transform: translateX(0.15rem)
+            }
+
+            .notibody {
+            color: #99999d;
+            padding: 0 1.25rem;
+            transition: transform 300ms ease;
+            z-index: 5;
+            }
+
+            .notification:hover .notibody {
+            transform: translateX(0.25rem)
+            }
+
+            .notiglow,
+            .notiborderglow {
+            position: absolute;
+            width: 20rem;
+            height: 20rem;
+            transform: translate(-50%, -50%);
+            background: radial-gradient(circle closest-side at center, white, transparent);
+            opacity: 0;
+            transition: opacity 300ms ease;
+            }
+
+            .notiglow {
+            z-index: 3;
+            }
+
+            .notiborderglow {
+            z-index: 1;
+            }
+
+            .notification:hover .notiglow {
+            opacity: 0.1
+            }
+
+            .notification:hover .notiborderglow {
+            opacity: 0.1
+            }
+
+            .note {
+            color: var(--color);
+            position: fixed;
+            top: 80%;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            font-size: 0.9rem;
+            width: 75%;
+            }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <img src="assets/images/CT.png" class="logo">
+        <hr class="styled-line">
+    
+        <a href="home.html" class="nav-item">
+            <img src="assets/images/home.png" width="35px" height="35px" alt="Home">
+            <span class="vertical-line"></span>
+            <div style="margin-left: -20px"></div>
+            Home
+        </a>
+        <div style="margin-top: -7.5px"></div>
+        <hr class="styled-line2">
+        <div style="margin-top: -7.5px"></div>
+        <a href="matchmaking.html" class="nav-item">
+            <img src="assets/images/play.png" width="35px" height="35px" alt="Play">
+            <span class="vertical-line"></span>
+            <div style="margin-left: -20px"></div>
+            Matchmaking
+        </a>
+        <div style="margin-top: -7.5px"></div>
+        <hr class="styled-line2">
+        <div style="margin-top: -7.5px"></div>
+        <a href="profile.html" class="nav-item">
+            <img src="assets/images/profile.png" width="35px" height="35px" alt="Profile">
+            <span class="vertical-line"></span>
+            <div style="margin-left: -20px"></div>
+            Profile
+        </a>
+        <div style="margin-top: -7.5px"></div>
+        <hr class="styled-line2">
+        <div style="margin-top: -7.5px"></div>
+        <a href="leaderboard.html" class="nav-item">
+            <img src="assets/images/leaderboard.png" width="35px" height="35px" alt="Leaderboard">
+            <span class="vertical-line"></span>
+            <div style="margin-left: -20px"></div>
+            Leaderboard
+        </a>
+
+        <a href="settings.html" class="nav-item upgrade">
+            <img src="assets/images/settings.png" width="35px" height="35px" alt="Settings">
+            <span class="vertical-line"></span>
+            <div style="margin-left: -20px"></div>
+            Settings
+        </a>
+        <div style="margin-bottom: 7.5px"></div>
+    </div>
+    <div style="margin-left: 220px;">
+        <div style="margin-left: 50px;margin-top: 50px">
+            
+            <b><i><h1>Matchmaking</h1></i></b>
+            <hr style="width: 1500px" class="styled-line2">
+            <div class="notification">
+                <div class="notiglow"></div>
+                <div class="notiborderglow"></div>
+                
+                <div class="notititle">
+                    <a href="profile.html"><img src="https://avatars.cloudflare.steamstatic.com/5b6279e50c1dca2775d24f9430ecf6fd5778696a_full.jpg" title="@Freezie" style="cursor:pointer;border-radius: 99px;border: 1px solid #5E7A93;" width="55px" height="55px"></a>
+                    <a><img src="assets/images/rating.common.png" title="Your premier rating" style="margin-left: 1px" width="150px" height="55px"></a>
+                    <a><img src="https://raw.githubusercontent.com/SteamDatabase/GameTracking-CSGO/0e457516ba13817a45b6c2a1d262fe7d0599bcbc/csgo/pak01_dir/resource/flash/econ/status_icons/skillgroup_expired.png" title="Your skill group" style="margin-left: 3px" width="150px" height="55px"></a>
+                    <div style="margin-top: -16px"></div>
+                    <br>
+                    <b>@Freezie</b>
+                </div>      
+                
+                <div class="notibody">Your Elo: <u><b><a id="userElo">0</a></b></u></div>
+                <div style="margin-top: 5px"></div>
+                <div class="notibody">Competetive Rank: <u><b><a id="userRank">Expired</a></b></u></div>
+                <div style="margin-top: 15px"></div>
+                <div class="notibody"><i>Your World Placement:</i> <a href="leaderboard.html"><u><b id="leaderboardPlacement">1</b></u></a><br></div>
+                <div style="margin-top: 5px"></div>
+                <div class="notibody"><i>Your</i> <u>Czech Republic</u> <i>Placement:</i> <a href="leaderboardczech.html"><u><b id="leaderboardPlacementLocal">1</b></u></a></div>
+              </div>
+    
+              <hr style="width: 1500px" class="styled-line2">
+
+            Game Mode:
+
+            <select id="mode" style="background:#181818;color: #ffffff;border-radius: 5px;cursor: pointer;align-items: center;width: 90%;padding: 12px;gap: 10px;transition: 0.3s;">
+            <option value="comp5v5">Competetive 5v5</option>
+            <option value="wing2v2">Wingman 2v2</option>
+            <option value="prem5v5">Premier 5v5</option>
+            <option value="deathmatch">Deathmatch</option>
+            </select>
+
+            <div style="margin-top: 0.1px"></div>
+
+            <br>
+
+            Type:
+
+            <select id="type" style="background:#181818;color: #ffffff;border-radius: 5px;cursor: pointer;align-items: center;width: 90%;padding: 12px;gap: 10px;transition: 0.3s;">
+                <option value="ranked">Ranked</option>
+                <option value="unranked">Unranked</option>
+            </select>
+
+            <div style="margin-top: 15px"></div>
+
+            <a href="#" id="sendWebhook" class="nav-item2">
+                <img src="assets/images/play.png" width="35px" height="35px" alt="Leaderboard">
+                <span class="vertical-line"></span>
+                <div style="margin-left: -20px"></div>
+                Queue up
+              </a>
+    
+            <hr style="width: 1500px" class="styled-line2">
+    </div>
+    <script>
+        document.getElementById("sendWebhook").addEventListener("click", function(event) {
+            event.preventDefault(); // Prevent default link behavior
+            
+            let mode = document.getElementById("mode").value;
+            let type = document.getElementById("type").value;
+            
+            let webhookURL = "https://discord.com/api/webhooks/1350188236231934142/UARMcE11TpEPWA9JsfXmBJRwJMi6cQRqmagyhK2Jl0t8mmHkzSAlkSNZB2GmhWaBRFTq"; // Replace with your webhook URL
+
+            let payload = {
+                content: `:video_game: Game Mode: **${mode}**\n:tools: Type: **${type}**\n<@784427948740050984>`
+            };
+
+            fetch(webhookURL, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(payload)
+            }).then(response => {
+                if (response.ok) {
+                    alert("Queue started, a invite will be sent to you shortly!");
+                } else {
+                    alert("Failed to queue up.");
+                }
+            }).catch(error => {
+                console.error("Error:", error);
+                alert("Error queuing up.");
+            });
+        });
+    </script>
+</body>
+</html>
+
+<script>
+    async function fetchAndUpdate() {
+        try {
+            const url = "https://raw.githubusercontent.com/counter-trainer/counter-trainer/main/playerData.json";
+            const response = await fetch(url, { cache: "no-store" });
+            const data = await response.json();
+    
+            if (data) {
+                document.getElementById("userElo").innerText = data.userElo || "N/A";;
+                document.getElementById("userRank").innerText = data.userRank || "N/A";;
+
+                document.getElementById("leaderboardPlacement").innerText = data.leaderboardPlacement || "N/A";;
+                document.getElementById("leaderboardPlacementLocal").innerText = data.leaderboardPlacementLocal || "N/A";;
+    
+                document.querySelector(".notititle b").innerText = `@${data.userName}`;
+                document.querySelector(".notititle a:nth-of-type(2) img").setAttribute("src", `assets/images/${data.userEloPicture}`);
+                document.querySelector(".notititle a:nth-of-type(3) img").setAttribute("src", data.userRankPicture);
+            }
+        } catch (error) {
+            console.error("Error fetching or updating data:", error);
+        }
+    }
+    
+    document.addEventListener("DOMContentLoaded", () => {
+        fetchAndUpdate();
+        setInterval(fetchAndUpdate, 10000); 
+    });
+</script>

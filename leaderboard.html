@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counter-Trainer | Leaderboard</title>
+    <style>
+        ::-webkit-scrollbar {
+            display: none;
+        }
+        body {
+            font-family: 'Open Sans', sans-serif;
+        }
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, rgb(14, 14, 14), rgb(14, 14, 14));
+            color: white;
+            display: flex;
+        }
+        .sidebar {
+            position: fixed;
+            width: 220px;
+            height: 100vh;
+            background: linear-gradient(to bottom, rgb(9, 9, 9), rgb(0, 0, 0));
+            padding-top: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .logo {
+            width: 75px;
+            height: 75px;
+            margin-bottom: 10px;
+        }
+        .search {
+            width: 90%;
+            padding: 10px;
+            background: #222;
+            border: 1px solid #5E7A93;
+            border-radius: 5px;
+            color: white;
+            margin-bottom: 10px;
+            outline: none;
+        }
+        .search:focus {
+            border-color: #88a1b9;
+        }
+        .nav-item {
+            width: 90%;
+            padding: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .nav-item2 {
+            width: 98.5%;
+            padding: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+            background:#181818;
+        }
+        .nav-item:hover {
+            background: #222;
+        }
+        .nav-item2:hover {
+            background: #222;
+        }
+        .icon {
+            width: 20px;
+            height: 20px;
+            background: gray;
+            border-radius: 3px;
+            box-shadow: 0px 8px 20px -10px #bbbbbb;
+        }
+        .upgrade {
+            color: #ffffff;
+            margin-top: auto;
+            margin-bottom: 10px;
+        }
+        .button {
+            border: solid 1px #ffffff;
+            width: 90%;
+            padding: 10px;
+            margin-top: 10px;
+            background: #5E7A93;
+            border: #222;
+            border-radius: 5px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .button:hover {
+            background: #88a1b9;
+        }
+        .input-field {
+            width: 90%;
+            padding: 8px;
+            margin-top: 10px;
+            background: #222;
+            border: 1px solid #5E7A93;
+            border-radius: 5px;
+            color: white;
+            outline: none;
+        }
+        .input-field:focus {
+            border-color: #88a1b9;
+        }
+        .checkbox {
+            margin-top: 10px;
+            accent-color: #5E7A93;
+        }
+        .slider {
+            width: 90%;
+            margin-top: 10px;
+            accent-color: #5E7A93;
+        }
+        .dropdown {
+            width: 90%;
+            padding: 8px;
+            background: #222;
+            border: 1px solid #5E7A93;
+            border-radius: 5px;
+            color: white;
+            margin-top: 10px;
+            outline: none;
+        }
+        .text-area {
+            width: 90%;
+            height: 80px;
+            background: #222;
+            border: 1px solid #5E7A93;
+            border-radius: 5px;
+            color: white;
+            padding: 8px;
+            margin-top: 10px;
+            outline: none;
+        }
+        .styled-line {
+            width: 90%;
+            border: none;
+            height: 2px;
+            background: #ffffff;
+            margin: 15px 0;
+            border-radius: 19px;
+        }
+        .styled-line2 {
+            width: 90%;
+            border: none;
+            height: 2px;
+            background: #ffffff2f;
+            margin: 15px 0;
+            border-radius: 19px;
+        }
+        .vertical-line {
+            width: 1.5px;
+            height: 30px;
+            background-color: #ffffff;
+            margin-right: 10px;
+            border-radius: 19px;
+        }
+        a {
+        text-decoration: none;
+        color: inherit;
+        }
+        a:focus, a:hover {
+            outline: none;
+        }
+        .notification {
+            display: flex;
+            flex-direction: column;
+            isolation: isolate;
+            position: relative;
+            width: 25rem;
+            height: 13.5rem;
+            background: #29292c;
+            border-radius: 1rem;
+            overflow: hidden;
+            font-size: 16px;
+            --gradient: linear-gradient(to bottom, #637789, #637789, #637789);
+            --color: #637789
+        }
+
+            .notification:before {
+            position: absolute;
+            content: "";
+            inset: 0.0625rem;
+            border-radius: 0.9375rem;
+            background: #18181b;
+            z-index: 2
+            }
+
+            .notification:after {
+            position: absolute;
+            content: "";
+            width: 0.25rem;
+            inset: 0.65rem auto 0.65rem 0.5rem;
+            border-radius: 0.125rem;
+            background: var(--gradient);
+            transition: transform 300ms ease;
+            z-index: 4;
+            }
+
+            .notification:hover:after {
+            transform: translateX(0.15rem)
+            }
+
+            .notititle {
+            color: var(--color);
+            padding: 0.65rem 0.25rem 0.4rem 1.25rem;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: transform 300ms ease;
+            z-index: 5;
+            }
+
+            .notification:hover .notititle {
+            transform: translateX(0.15rem)
+            }
+
+            .notibody {
+            color: #99999d;
+            padding: 0 1.25rem;
+            transition: transform 300ms ease;
+            z-index: 5;
+            }
+
+            .notification:hover .notibody {
+            transform: translateX(0.25rem)
+            }
+
+            .notiglow,
+            .notiborderglow {
+            position: absolute;
+            width: 20rem;
+            height: 20rem;
+            transform: translate(-50%, -50%);
+            background: radial-gradient(circle closest-side at center, white, transparent);
+            opacity: 0;
+            transition: opacity 300ms ease;
+            }
+
+            .notiglow {
+            z-index: 3;
+            }
+
+            .notiborderglow {
+            z-index: 1;
+            }
+
+            .notification:hover .notiglow {
+            opacity: 0.1
+            }
+
+            .notification:hover .notiborderglow {
+            opacity: 0.1
+            }
+
+            .note {
+            color: var(--color);
+            position: fixed;
+            top: 80%;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            font-size: 0.9rem;
+            width: 75%;
+            }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <img src="assets/images/CT.png" class="logo">
+        <hr class="styled-line">
+    
+        <a href="home.html" class="nav-item">
+            <img src="assets/images/home.png" width="35px" height="35px" alt="Home">
+            <span class="vertical-line"></span>
+            <div style="margin-left: -20px"></div>
+            Home
+        </a>
+        <div style="margin-top: -7.5px"></div>
+        <hr class="styled-line2">
+        <div style="margin-top: -7.5px"></div>
+        <a href="matchmaking.html" class="nav-item">
+            <img src="assets/images/play.png" width="35px" height="35px" alt="Play">
+            <span class="vertical-line"></span>
+            <div style="margin-left: -20px"></div>
+            Matchmaking
+        </a>
+        <div style="margin-top: -7.5px"></div>
+        <hr class="styled-line2">
+        <div style="margin-top: -7.5px"></div>
+        <a href="profile.html" class="nav-item">
+            <img src="assets/images/profile.png" width="35px" height="35px" alt="Profile">
+            <span class="vertical-line"></span>
+            <div style="margin-left: -20px"></div>
+            Profile
+        </a>
+        <div style="margin-top: -7.5px"></div>
+        <hr class="styled-line2">
+        <div style="margin-top: -7.5px"></div>
+        <a href="leaderboard.html" class="nav-item">
+            <img src="assets/images/leaderboard.png" width="35px" height="35px" alt="Leaderboard">
+            <span class="vertical-line"></span>
+            <div style="margin-left: -20px"></div>
+            Leaderboard
+        </a>
+
+        <a href="settings.html" class="nav-item upgrade">
+            <img src="assets/images/settings.png" width="35px" height="35px" alt="Settings">
+            <span class="vertical-line"></span>
+            <div style="margin-left: -20px"></div>
+            Settings
+        </a>
+        <div style="margin-bottom: 7.5px"></div>
+    </div>
+    <div style="margin-left: 220px;">
+        <div style="margin-left: 50px;margin-top: 50px">
+            
+            <b><i><h1>Leaderboard</h1></i></b> 
+            <i>Global</i>
+            <hr style="width: 1500px" class="styled-line2">
+    
+            <a style="display: flex; align-items: center; gap: 10px; width: 100%;">
+                <b style="font-size: 24px;">1.</b>
+                <img src="https://avatars.fastly.steamstatic.com/8d5169e00dba714c98c116568570fa9ee5e02cd7_full.jpg" 
+                     title="@♿" 
+                     style="border-radius: 99px; border: 1px solid #5E7A93;" 
+                     width="55px"
+                     height="55px">
+                </img>
+                <b style="font-size: 24px;">♿</b>
+                <i style="font-size: 16px;">34,012 Elo</i>
+            </a>
+            <div style="margin-top: 22px;"></div>
+            <a style="display: flex; align-items: center; gap: 10px; width: 100%;">
+                <b style="font-size: 24px;">2.</b>
+                <img src="https://cdn.akamai.steamstatic.com/steamcommunity/public/images/items/1054490/240c47d35c5d18747d268a5ae3603f8921789eaf.gif" 
+                     title="@Crow" 
+                     style="border-radius: 99px; border: 1px solid #5E7A93;" 
+                     width="55px" 
+                     height="55px">
+                </img>
+                <b style="font-size: 24px;">Crow</b>
+                <i style="font-size: 16px;">33,941 Elo</i>
+            </a>
+            <div style="margin-top: 22px;"></div>
+            <a style="display: flex; align-items: center; gap: 10px; width: 100%;">
+                <b style="font-size: 24px;">3.</b>
+                <img src="https://avatars.fastly.steamstatic.com/c1cecfba03b55562979bfe020c3efa2f751eda5a_full.jpg" 
+                     title="@Ноль" 
+                     style="border-radius: 99px; border: 1px solid #5E7A93;" 
+                     width="55px" 
+                     height="55px">
+                </img>
+                <b style="font-size: 24px;">Ноль</b>
+                <i style="font-size: 16px;">32,226 Elo</i>
+            </a>   
+            <div style="margin-top: 22px;"></div>
+            <a style="display: flex; align-items: center; gap: 10px; width: 100%;">
+                <b style="font-size: 24px;">4.</b>
+                <img src="https://avatars.fastly.steamstatic.com/aafde65e81dfb1d3f628f84e59bdaacab933aed9_full.jpg" 
+                     title="@lawmvt" 
+                     style="border-radius: 99px; border: 1px solid #5E7A93;" 
+                     width="55px" 
+                     height="55px">
+                </img>
+                <b style="font-size: 24px;">lawmvt</b>
+                <i style="font-size: 16px;">31,457 Elo</i>
+            </a>   
+            <div style="margin-top: 22px;"></div>
+            <a style="display: flex; align-items: center; gap: 10px; width: 100%;">
+                <b style="font-size: 24px;">5.</b>
+                <img src="https://avatars.fastly.steamstatic.com/e0345d95a99a0280d31aaec05676eaad7a125d2c_full.jpg" 
+                     title="@steamhappy" 
+                     style="border-radius: 99px; border: 1px solid #5E7A93;" 
+                     width="55px" 
+                     height="55px">
+                </img>
+                <b style="font-size: 24px;">steamhappy</b>
+                <i style="font-size: 16px;">30,000 Elo</i>
+            </a>   
+            <div style="margin-top: 22px;"></div>
+            <a style="display: flex; align-items: center; gap: 10px; width: 100%;">
+                <b style="font-size: 24px;">6.</b>
+                <img src="https://avatars.fastly.steamstatic.com/44591e02907bc8cfac91f70207bb876c6d45114e_full.jpg" 
+                     title="@aex" 
+                     style="border-radius: 99px; border: 1px solid #5E7A93;" 
+                     width="55px" 
+                     height="55px">
+                </img>
+                <b style="font-size: 24px;">aex</b>
+                <i style="font-size: 16px;">29,582 Elo</i>
+            </a>   
+            <div style="margin-top: 22px;"></div>
+            <a style="display: flex; align-items: center; gap: 10px; width: 100%;">
+                <b style="font-size: 24px;">7.</b>
+                <img src="https://avatars.fastly.steamstatic.com/664604fe03efa2756ec3c471dfde0eae3c6a78fa_full.jpg" 
+                     title="@novacpls" 
+                     style="border-radius: 99px; border: 1px solid #5E7A93;" 
+                     width="55px" 
+                     height="55px">
+                </img>
+                <b style="font-size: 24px;">novacpls</b>
+                <i style="font-size: 16px;">24,185 Elo</i>
+            </a>   
+            <div style="margin-top: 22px;"></div>
+            <a style="display: flex; align-items: center; gap: 10px; width: 100%;">
+                <b style="font-size: 24px;">8.</b>
+                <img src="https://avatars.fastly.steamstatic.com/de8aea7d82126409536c8f9927323d897e9d681c_full.jpg" 
+                     title="@ДОБРЫЙ ВЕЧЕР" 
+                     style="border-radius: 99px; border: 1px solid #5E7A93;" 
+                     width="55px" 
+                     height="55px">
+                </img>
+                <b style="font-size: 24px;">ДОБРЫЙ ВЕЧЕР</b>
+                <i style="font-size: 16px;">23,859 Elo</i>
+            </a>   
+            <div style="margin-top: 22px;"></div>
+            <a style="display: flex; align-items: center; gap: 10px; width: 100%;">
+                <b style="font-size: 24px;">9.</b>
+                <img src="https://avatars.fastly.steamstatic.com/11cab954fed569837851e65fe6a7a72d153a6d1e_full.jpg" 
+                     title="@Pea-Nut^" 
+                     style="border-radius: 99px; border: 1px solid #5E7A93;" 
+                     width="55px" 
+                     height="55px">
+                </img>
+                <b style="font-size: 24px;">Pea-Nut^</b>
+                <i style="font-size: 16px;">22,412 Elo</i>
+            </a>   
+            <div style="margin-top: 22px;"></div>
+            <a style="display: flex; align-items: center; gap: 10px; width: 100%;">
+                <b style="font-size: 24px;">10.</b>
+                <img src="https://avatars.fastly.steamstatic.com/c919dea0ffd3c743747886f1f43d261be294f88b_full.jpg" 
+                     title="@ඞ" 
+                     style="border-radius: 99px; border: 1px solid #5E7A93;" 
+                     width="55px" 
+                     height="55px">
+                </img>
+                <b style="font-size: 24px;">ඞ</b>
+                <i style="font-size: 16px;">21,559 Elo</i>
+            </a>        
+
+            <hr style="width: 1500px" class="styled-line2">
+    </div>
+</html>
