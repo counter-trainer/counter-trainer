@@ -15,7 +15,7 @@
         body {
             margin: 0;
             font-family: Arial, sans-serif;
-            background: linear-gradient(to bottom, rgb(14, 14, 14), rgb(14, 14, 14));
+            background: linear-gradient(to bottom, #0e0e0e, rgb(14, 14, 14));
             color: white;
             display: flex;
         }
@@ -276,25 +276,6 @@
                width: 75%;
             }
 
-            .collapsible {
-            background-color: #181818;
-            color: #ffffff;
-            cursor: pointer;
-            padding: 18px;
-            width: 100%;
-            border: none;
-            text-align: left;
-            outline: none;
-            border-radius: 10px;
-            font-size: 15px;
-            background:#181818;
-            transition: 0.3s;
-            }
-
-            .active, .collapsible:hover {
-            background-color: #161616;
-            }
-
             .content {
             padding: 0 18px;
             display: none;
@@ -352,54 +333,69 @@
     </div>
     <div style="margin-left: 220px;">
         <div style="margin-left: 50px;margin-top: 50px">
-            <div style="display: flex; align-items: center; gap: 10px;">
+            <div style="display: flex; align-items: center; gap: 10px; flex-direction: column; text-align: center;">
                 <a>
                     <img src="https://avatars.cloudflare.steamstatic.com/5b6279e50c1dca2775d24f9430ecf6fd5778696a_full.jpg" 
                          title="@Freezie" 
                          style="border-radius: 99px; border: 1px solid #5E7A93;" 
-                         width="55px" 
-                         height="55px">
+                         width="105px" 
+                         height="105px">
                 </a>
                 <b><i><h1 style="margin: 0;">@Freezie</h1></i></b>
-            </div>
+                <span style="font-size: 14px; color: rgb(71, 154, 255);">Online</span>
+            </div>            
 
             <hr style="width: 1500px" class="styled-line2">
 
-            <img src="assets/images/loyalty.png" style="width: 50px;">
+            <center><img src="assets/images/loyalty.png" style="width: 50px;"></center>
 
             <hr style="width: 1500px" class="styled-line2">
             
-            <h1>Rating</h1>
-            <div>Your Elo: <u><b><a id="userElo">1</a></b></u></div>
-            <div style="margin-top: 5px"></div>
-            <a><img id="ratingImage" src="assets/images/rating.common.png" style="margin-left: 1px" width="150px" height="55px"></a>
+            <center>
+                <div style="background-color: #0e0e0e;border-radius: 25px; border: 3px solid #222; width: 500px; height: 300px; padding: 25px;">
+                    <i>No bio...</i>
+                    <br>
+                    <div style="margin-top: 25px;">
+                    Member since: <b>02.02.2025 17:11</b>
+                    <br>
+                    <div style="margin-top: 10px;">
+                    Account status: <b>Clean</b>
+                    <hr style="width: 500px" class="styled-line2">
+                    <div style="text-align: center; width: 150px; margin-left: 1px;">
+                        <u><b><a id="userElo">1</a></b></u> Elo
+                    </div>
+                    <div style="margin-top: 5px;"></div>
+                    <a><img id="ratingImage" src="assets/images/rating.common.png" style="margin-left: 1px;" width="150px" height="55px"></a>
+                    
+                    <div style="display: flex; justify-content: center; gap: 20px; align-items: center; margin-top: 15px;">
+                        <div style="text-align: center;">
+                            <div><u><b><a id="compRankText">Expired</a></b></u></div>
+                            <div style="margin-top: 5px"></div>
+                            <a><img id="compRank" src="https://raw.githubusercontent.com/SteamDatabase/GameTracking-CSGO/0e457516ba13817a45b6c2a1d262fe7d0599bcbc/csgo/pak01_dir/resource/flash/econ/status_icons/skillgroup_expired.png" title="Your skill group" width="150px" height="55px"></a>
+                        </div>
+
+                        <span style="height: 100px;background-color: #222;" class="vertical-line"></span>
+            
+                        <div style="text-align: center;">
+                            <div><u><b><a id="wingRankText">Unknown</a></b></u></div>
+                            <div style="margin-top: 5px"></div>
+                            <img id="wingRank" style="width: 150px;" src="assets/images/wingman_unknown.webp">
+                        </div>
+                    </div>
+                </div>
+            </center>                              
+                      
             
             <div style="margin-top: 5px"></div>
-            
-            <hr style="width: 1500px" class="styled-line2">
-
-            <button type="button" class="collapsible">See Ranks</button>
-            <div class="content">
-                <div style="margin-top: 15px"></div>
-                <div>Competetive Rank: <u><b><a id="compRankText">Expired</a></b></u></div>
-            <div style="margin-top: 5px"></div>
-            <a><img id="compRank" src="https://raw.githubusercontent.com/SteamDatabase/GameTracking-CSGO/0e457516ba13817a45b6c2a1d262fe7d0599bcbc/csgo/pak01_dir/resource/flash/econ/status_icons/skillgroup_expired.png" title="Your skill group" style="margin-left: 3px" width="150px" height="55px"></a>
-            <div style="margin-top: 15px"></div>
 
             <hr style="width: 1500px" class="styled-line2">
 
-            <div>Wingman Rank: <u><b><a id="wingRankText">Unknown</a></b></u></div>
-            <div style="margin-top: 5px"></div>
-            <img id="wingRank" style="width: 150px;" src="assets/images/wingman_unknown.webp"></img>
-            <div style="margin-top: 15px"></div>
-
-            <hr style="width: 1500px" class="styled-line2">
-
-            <div>Deathmatch Rank: <u><b><a id="deathRankText">Unknown</a></b></u></div>
-            <div style="margin-top: 5px"></div>
-            <img id="deathRank" style="width: 155px;" src="https://raw.githubusercontent.com/SteamDatabase/GameTracking-CSGO/0e457516ba13817a45b6c2a1d262fe7d0599bcbc/csgo/pak01_dir/resource/flash/econ/status_icons/skillgroup_none.png"></img>
-            <div style="margin-top: 15px"></div>
-            </div>
+            <a href="inventory.html" class="nav-item2">
+                <img src="assets/images/inventory.png" width="35px" height="35px" alt="Leaderboard">
+                <span class="vertical-line"></span>
+                <div style="margin-left: -20px"></div>
+                My Inventory
+              </a>
 
             <hr style="width: 1500px" class="styled-line2">
             <h1>Placement</h1>
@@ -408,12 +404,6 @@
             <div><i>Your</i> <u>Czech Republic</u> <i>Placement:</i> <a href="leaderboardczech.html"><u><b id="leaderboardPlacementLocal">1</b></u></a></div>
     
             <hr style="width: 1500px" class="styled-line2">
-
-            <h1>Operations</h1>
-            Completed Operations:
-            <div style="margin-top: 5px"></div>
-            <br>
-            <i>None</i>
     </div>
 </body>
 </html>
