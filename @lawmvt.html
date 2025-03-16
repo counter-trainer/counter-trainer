@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counter-Trainer | lawmvt</title>
+    <style>
+        ::-webkit-scrollbar {
+            display: none;
+        }
+        body {
+            font-family: 'Open Sans', sans-serif;
+            height: 100%;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: white;
+            display: flex;
+        }
+        .sidebar {
+            position: fixed;
+            width: 220px;
+            height: 100vh;
+            background: linear-gradient(to bottom, rgb(9, 9, 9), rgb(0, 0, 0));
+            padding-top: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .logo {
+            width: 75px;
+            height: 75px;
+            margin-bottom: 10px;
+        }
+        .search {
+            width: 90%;
+            padding: 10px;
+            background: #222;
+            border: 1px solid #5E7A93;
+            border-radius: 5px;
+            color: white;
+            margin-bottom: 10px;
+            outline: none;
+        }
+        .search:focus {
+            border-color: #88a1b9;
+        }
+        .nav-item {
+            width: 90%;
+            padding: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .nav-item2 {
+            width: 98.5%;
+            padding: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+            background:#181818;
+        }
+        .nav-item:hover {
+            background: #222;
+        }
+        .nav-item2:hover {
+            background: #222;
+        }
+        .icon {
+            width: 20px;
+            height: 20px;
+            background: gray;
+            border-radius: 3px;
+            box-shadow: 0px 8px 20px -10px #bbbbbb;
+        }
+        .upgrade {
+            color: #ffffff;
+            margin-top: auto;
+            margin-bottom: 10px;
+        }
+        .button {
+            border: solid 1px #ffffff;
+            width: 90%;
+            padding: 10px;
+            margin-top: 10px;
+            background: #5E7A93;
+            border: #222;
+            border-radius: 5px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .button:hover {
+            background: #88a1b9;
+        }
+        .input-field {
+            width: 90%;
+            padding: 8px;
+            margin-top: 10px;
+            background: #222;
+            border: 1px solid #5E7A93;
+            border-radius: 5px;
+            color: white;
+            outline: none;
+        }
+        .input-field:focus {
+            border-color: #88a1b9;
+        }
+        .checkbox {
+            margin-top: 10px;
+            accent-color: #5E7A93;
+        }
+        .slider {
+            width: 90%;
+            margin-top: 10px;
+            accent-color: #5E7A93;
+        }
+        .dropdown {
+            width: 90%;
+            padding: 8px;
+            background: #222;
+            border: 1px solid #5E7A93;
+            border-radius: 5px;
+            color: white;
+            margin-top: 10px;
+            outline: none;
+        }
+        .text-area {
+            width: 90%;
+            height: 80px;
+            background: #222;
+            border: 1px solid #5E7A93;
+            border-radius: 5px;
+            color: white;
+            padding: 8px;
+            margin-top: 10px;
+            outline: none;
+        }
+        .styled-line {
+            width: 90%;
+            border: none;
+            height: 2px;
+            background: #ffffff;
+            margin: 15px 0;
+            border-radius: 19px;
+        }
+        .styled-line2 {
+            width: 90%;
+            border: none;
+            height: 2px;
+            background: #ffffff2f;
+            margin: 15px 0;
+            border-radius: 19px;
+        }
+        .vertical-line {
+            width: 1.5px;
+            height: 30px;
+            background-color: #ffffff;
+            margin-right: 10px;
+            border-radius: 19px;
+        }
+        a {
+        text-decoration: none;
+        color: inherit;
+        }
+        a:focus, a:hover {
+            outline: none;
+        }
+        .notification {
+            display: flex;
+            flex-direction: column;
+            isolation: isolate;
+            position: relative;
+            width: 25rem;
+            height: 13.5rem;
+            background: #29292c;
+            border-radius: 1rem;
+            overflow: hidden;
+            font-size: 16px;
+            --gradient: linear-gradient(to bottom, #637789, #637789, #637789);
+            --color: #637789
+        }
+
+            .notification:before {
+            position: absolute;
+            content: "";
+            inset: 0.0625rem;
+            border-radius: 0.9375rem;
+            background: #18181b;
+            z-index: 2
+            }
+
+            .notification:after {
+            position: absolute;
+            content: "";
+            width: 0.25rem;
+            inset: 0.65rem auto 0.65rem 0.5rem;
+            border-radius: 0.125rem;
+            background: var(--gradient);
+            transition: transform 300ms ease;
+            z-index: 4;
+            }
+
+            .notification:hover:after {
+            transform: translateX(0.15rem)
+            }
+
+            .notititle {
+            color: var(--color);
+            padding: 0.65rem 0.25rem 0.4rem 1.25rem;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: transform 300ms ease;
+            z-index: 5;
+            }
+
+            .notification:hover .notititle {
+            transform: translateX(0.15rem)
+            }
+
+            .notibody {
+            color: #99999d;
+            padding: 0 1.25rem;
+            transition: transform 300ms ease;
+            z-index: 5;
+            }
+
+            .notification:hover .notibody {
+            transform: translateX(0.25rem)
+            }
+
+            .notiglow,
+            .notiborderglow {
+            position: absolute;
+            width: 20rem;
+            height: 20rem;
+            transform: translate(-50%, -50%);
+            background: radial-gradient(circle closest-side at center, white, transparent);
+            opacity: 0;
+            transition: opacity 300ms ease;
+            }
+
+            .notiglow {
+            z-index: 3;
+            }
+
+            .notiborderglow {
+            z-index: 1;
+            }
+
+            .notification:hover .notiglow {
+            opacity: 0.1
+            }
+
+            .notification:hover .notiborderglow {
+            opacity: 0.1
+            }
+
+            .note {
+            color: var(--color);
+            position: fixed;
+            top: 80%;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            font-size: 0.9rem;
+               width: 75%;
+            }
+
+            .content {
+            padding: 0 18px;
+            display: none;
+            overflow: hidden;
+            background-color: #111111;
+            }
+            .container::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  backdrop-filter: blur(1em) brightness(6);
+  background-image: radial-gradient(
+    circle at 50% 50%,
+    #0000 0,
+    #0000 2px,
+    hsl(0 0 4%) 2px
+  );
+  background-size: 8px 8px;
+}
+
+.container {
+  position: absolute;
+  z-index: -2;
+  width: 100%;
+  height: 115%;
+  --c: #09f;
+  background-color: #000;
+  background-image: radial-gradient(4px 100px at 0px 235px, var(--c), #0000),
+    radial-gradient(4px 100px at 300px 235px, var(--c), #0000),
+    radial-gradient(1.5px 1.5px at 150px 117.5px, var(--c) 100%, #0000 150%),
+    radial-gradient(4px 100px at 0px 252px, var(--c), #0000),
+    radial-gradient(4px 100px at 300px 252px, var(--c), #0000),
+    radial-gradient(1.5px 1.5px at 150px 126px, var(--c) 100%, #0000 150%),
+    radial-gradient(4px 100px at 0px 150px, var(--c), #0000),
+    radial-gradient(4px 100px at 300px 150px, var(--c), #0000),
+    radial-gradient(1.5px 1.5px at 150px 75px, var(--c) 100%, #0000 150%),
+    radial-gradient(4px 100px at 0px 253px, var(--c), #0000),
+    radial-gradient(4px 100px at 300px 253px, var(--c), #0000),
+    radial-gradient(1.5px 1.5px at 150px 126.5px, var(--c) 100%, #0000 150%),
+    radial-gradient(4px 100px at 0px 204px, var(--c), #0000),
+    radial-gradient(4px 100px at 300px 204px, var(--c), #0000),
+    radial-gradient(1.5px 1.5px at 150px 102px, var(--c) 100%, #0000 150%),
+    radial-gradient(4px 100px at 0px 134px, var(--c), #0000),
+    radial-gradient(4px 100px at 300px 134px, var(--c), #0000),
+    radial-gradient(1.5px 1.5px at 150px 67px, var(--c) 100%, #0000 150%),
+    radial-gradient(4px 100px at 0px 179px, var(--c), #0000),
+    radial-gradient(4px 100px at 300px 179px, var(--c), #0000),
+    radial-gradient(1.5px 1.5px at 150px 89.5px, var(--c) 100%, #0000 150%),
+    radial-gradient(4px 100px at 0px 299px, var(--c), #0000),
+    radial-gradient(4px 100px at 300px 299px, var(--c), #0000),
+    radial-gradient(1.5px 1.5px at 150px 149.5px, var(--c) 100%, #0000 150%),
+    radial-gradient(4px 100px at 0px 215px, var(--c), #0000),
+    radial-gradient(4px 100px at 300px 215px, var(--c), #0000),
+    radial-gradient(1.5px 1.5px at 150px 107.5px, var(--c) 100%, #0000 150%),
+    radial-gradient(4px 100px at 0px 281px, var(--c), #0000),
+    radial-gradient(4px 100px at 300px 281px, var(--c), #0000),
+    radial-gradient(1.5px 1.5px at 150px 140.5px, var(--c) 100%, #0000 150%),
+    radial-gradient(4px 100px at 0px 158px, var(--c), #0000),
+    radial-gradient(4px 100px at 300px 158px, var(--c), #0000),
+    radial-gradient(1.5px 1.5px at 150px 79px, var(--c) 100%, #0000 150%),
+    radial-gradient(4px 100px at 0px 210px, var(--c), #0000),
+    radial-gradient(4px 100px at 300px 210px, var(--c), #0000),
+    radial-gradient(1.5px 1.5px at 150px 105px, var(--c) 100%, #0000 150%);
+  background-size:
+    300px 235px,
+    300px 235px,
+    300px 235px,
+    300px 252px,
+    300px 252px,
+    300px 252px,
+    300px 150px,
+    300px 150px,
+    300px 150px,
+    300px 253px,
+    300px 253px,
+    300px 253px,
+    300px 204px,
+    300px 204px,
+    300px 204px,
+    300px 134px,
+    300px 134px,
+    300px 134px,
+    300px 179px,
+    300px 179px,
+    300px 179px,
+    300px 299px,
+    300px 299px,
+    300px 299px,
+    300px 215px,
+    300px 215px,
+    300px 215px,
+    300px 281px,
+    300px 281px,
+    300px 281px,
+    300px 158px,
+    300px 158px,
+    300px 158px,
+    300px 210px,
+    300px 210px,
+    300px 210px;
+  animation: hi 150s linear infinite;
+}
+
+@keyframes hi {
+  0% {
+    background-position:
+      0px 220px,
+      3px 220px,
+      151.5px 337.5px,
+      25px 24px,
+      28px 24px,
+      176.5px 150px,
+      50px 16px,
+      53px 16px,
+      201.5px 91px,
+      75px 224px,
+      78px 224px,
+      226.5px 350.5px,
+      100px 19px,
+      103px 19px,
+      251.5px 121px,
+      125px 120px,
+      128px 120px,
+      276.5px 187px,
+      150px 31px,
+      153px 31px,
+      301.5px 120.5px,
+      175px 235px,
+      178px 235px,
+      326.5px 384.5px,
+      200px 121px,
+      203px 121px,
+      351.5px 228.5px,
+      225px 224px,
+      228px 224px,
+      376.5px 364.5px,
+      250px 26px,
+      253px 26px,
+      401.5px 105px,
+      275px 75px,
+      278px 75px,
+      426.5px 180px;
+  }
+
+  to {
+    background-position:
+      0px 6800px,
+      3px 6800px,
+      151.5px 6917.5px,
+      25px 13632px,
+      28px 13632px,
+      176.5px 13758px,
+      50px 5416px,
+      53px 5416px,
+      201.5px 5491px,
+      75px 17175px,
+      78px 17175px,
+      226.5px 17301.5px,
+      100px 5119px,
+      103px 5119px,
+      251.5px 5221px,
+      125px 8428px,
+      128px 8428px,
+      276.5px 8495px,
+      150px 9876px,
+      153px 9876px,
+      301.5px 9965.5px,
+      175px 13391px,
+      178px 13391px,
+      326.5px 13540.5px,
+      200px 14741px,
+      203px 14741px,
+      351.5px 14848.5px,
+      225px 18770px,
+      228px 18770px,
+      376.5px 18910.5px,
+      250px 5082px,
+      253px 5082px,
+      401.5px 5161px,
+      275px 6375px,
+      278px 6375px,
+      426.5px 6480px;
+  }
+}
+
+    </style>
+</head>
+<body>
+    <div class="container"></div>
+    <div class="sidebar">
+        <img src="assets/images/CT.png" class="logo">
+        <hr class="styled-line">
+    
+        <a href="home.html" class="nav-item">
+            <img src="assets/images/home.png" width="35px" height="35px" alt="Home">
+            <span class="vertical-line"></span>
+            <div style="margin-left: -20px"></div>
+            Home
+        </a>
+        <div style="margin-top: -7.5px"></div>
+        <hr class="styled-line2">
+        <div style="margin-top: -7.5px"></div>
+        <a href="matchmaking.html" class="nav-item">
+            <img src="assets/images/play.png" width="35px" height="35px" alt="Play">
+            <span class="vertical-line"></span>
+            <div style="margin-left: -20px"></div>
+            Matchmaking
+        </a>
+        <div style="margin-top: -7.5px"></div>
+        <hr class="styled-line2">
+        <div style="margin-top: -7.5px"></div>
+        <a href="profile.html" class="nav-item">
+            <img src="assets/images/profile.png" width="35px" height="35px" alt="Profile">
+            <span class="vertical-line"></span>
+            <div style="margin-left: -20px"></div>
+            Profile
+        </a>
+        <div style="margin-top: -7.5px"></div>
+        <hr class="styled-line2">
+        <div style="margin-top: -7.5px"></div>
+        <a href="leaderboard.html" class="nav-item">
+            <img src="assets/images/leaderboard.png" width="35px" height="35px" alt="Leaderboard">
+            <span class="vertical-line"></span>
+            <div style="margin-left: -20px"></div>
+            Leaderboard
+        </a>
+
+        <a href="settings.html" class="nav-item upgrade">
+            <img src="assets/images/settings.png" width="35px" height="35px" alt="Settings">
+            <span class="vertical-line"></span>
+            <div style="margin-left: -20px"></div>
+            Settings
+        </a>
+        <div style="margin-bottom: 7.5px"></div>
+    </div>
+    <div style="margin-left: 220px;">
+        <div style="margin-left: 50px;margin-top: 50px">
+            <div style="display: flex; align-items: center; gap: 10px; flex-direction: column; text-align: center;">
+                <a>
+                    <img src="https://avatars.fastly.steamstatic.com/aafde65e81dfb1d3f628f84e59bdaacab933aed9_full.jpg" 
+                         title="@lawmvt" 
+                         style="border-radius: 99px; border: 1px solid #5E7A93;" 
+                         width="105px" 
+                         height="105px">
+                </a>
+                <b><i><h1 style="margin: 0;">@lawmvt</h1></i></b>
+                <img style="width: 40px;border: 2px solid #222;" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Flag_of_the_Czech_Republic.svg/2560px-Flag_of_the_Czech_Republic.svg.png"></img>
+                <span style="font-size: 14px; color: rgb(71, 154, 255);">Online</span>
+            </div>            
+
+            <hr style="width: 1500px" class="styled-line2">
+
+            <center><img src="assets/images/loyalty.png" style="width: 50px;"></center>
+
+            <hr style="width: 1500px" class="styled-line2">
+            
+            <center>
+                <div style="background-color: #0e0e0e;border-radius: 25px; border: 3px solid #222; width: 500px; height: 300px; padding: 25px;">
+                    <i>him</i>
+                    <br>
+                    <div style="margin-top: 25px;">
+                    Member since: <b>25.12.2024 13:02</b>
+                    <br>
+                    <div style="margin-top: 10px;">
+                    Account status: <b>Clean</b>
+                    <hr style="width: 500px" class="styled-line2">
+                    <div style="text-align: center; width: 150px; margin-left: 1px;">
+                        <u><b><a id="userElo">31,457</a></b></u> Elo
+                    </div>
+                    <div style="margin-top: 5px;"></div>
+                    <a><img id="ratingImage" src="assets/images/rating.unusual.png" style="margin-left: 1px;" width="150px" height="55px"></a>
+                    
+                    <div style="display: flex; justify-content: center; gap: 20px; align-items: center; margin-top: 15px;">
+                        <div style="text-align: center;">
+                            <div><u><b><a id="compRankText">The Global Elite</a></b></u></div>
+                            <div style="margin-top: 5px"></div>
+                            <a><img id="compRank" src="https://raw.githubusercontent.com/SteamDatabase/GameTracking-CSGO/0e457516ba13817a45b6c2a1d262fe7d0599bcbc/csgo/pak01_dir/resource/flash/econ/status_icons/skillgroup18.png" title="Your skill group" width="150px" height="55px"></a>
+                        </div>
+
+                        <span style="height: 100px;background-color: #222;" class="vertical-line"></span>
+            
+                        <div style="text-align: center;">
+                            <div><u><b><a id="wingRankText">The Global Elite</a></b></u></div>
+                            <div style="margin-top: 5px"></div>
+                            <img id="wingRank" style="width: 150px;" src="assets/images/wingman_global.webp">
+                        </div>
+                    </div>
+                </div>
+            </center>                              
+                      
+            
+            <div style="margin-top: 5px"></div>
+
+            <hr style="width: 1500px" class="styled-line2">
+
+            <a class="nav-item2">
+                <img src="assets/images/inventory.png" width="35px" height="35px" alt="Leaderboard">
+                <span class="vertical-line"></span>
+                <div style="margin-left: -20px"></div>
+                <i>This users inventory is private.</i>
+              </a>
+
+            <hr style="width: 1500px" class="styled-line2">
+            <h1>Placement</h1>
+            <div><i>lawmvt's Placement:</i> <a href="leaderboard.html"><u><b id="leaderboardPlacement">#4</b></u></a><br></div>
+            <div style="margin-top: 5px"></div>
+            <div><i>lawmvt's</i> <u>Czech Republic</u> <i>Placement:</i> <a href="leaderboardczech.html"><u><b id="leaderboardPlacementLocal">#1</b></u></a></div>
+    
+            <hr style="width: 1500px" class="styled-line2">
+    </div>
+</body>
+</html>
